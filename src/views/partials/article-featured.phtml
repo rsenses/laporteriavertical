@@ -1,0 +1,15 @@
+<article class="article" data-url="/<?php echo $view->escape($post->url, 'path') ?>" data-title="<?php echo $view->escape($post->title) ?>">
+    <div class="article-wrapper">
+        <div class="article-video">
+            <?php echo $post->options['tiktok'] ?>
+            <script async src="https://www.tiktok.com/embed.js"></script>
+        </div>
+        <div class="article-content">
+            <span class="ante"><?php echo $view->escape($tag->name) ?></span>
+            <h2><?php echo $view->escape($post->title) ?></h2>
+            <?php echo $post->content ?>
+            <?php include __DIR__ . '/share.phtml' ?>
+            <a class="pagination__next" href="/alone/<?php echo $view->escape($next->url, 'path') ?>" data-title="<?php echo $view->escape($next->title) ?>">Next page</a>
+        </div>
+    </div>
+</article>

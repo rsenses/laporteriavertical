@@ -1,0 +1,85 @@
+<?php $view->extend('layout.phtml') ?>
+<?php $view['slots']->set('section', $section) ?>
+<?php $view['slots']->set('google', $GLOBALS['config']['enum']['categories'][$category->slug]['description']) ?>
+<?php $view['slots']->set('facebook', $GLOBALS['config']['enum']['categories'][$category->slug]['description']) ?>
+<?php $view['slots']->set('twitter', $GLOBALS['config']['enum']['categories'][$category->slug]['twitter']) ?>
+
+<?php $view['slots']->start('styles') ?>
+<?php $view['slots']->stop() ?>
+
+<?php $view['slots']->start('header') ?>
+    <?php include __DIR__ . '/partials/header.phtml' ?>
+<?php $view['slots']->stop() ?>
+
+<section class="category section">
+    <div class="section-title">
+        <div class="section-title_left">
+            <h3 class="">
+                <?php echo $GLOBALS['config']['enum']['categories'][$category->slug]['title'] ?>
+            </h3>
+            <div class="share share-home">
+                <span>Comparte esto <em>con el mundo</em></span>
+                <?php include __DIR__ . '/partials/share.phtml' ?>
+            </div>
+        </div>
+        <div class="section-title_right">
+            <p class="">
+                <?php echo $GLOBALS['config']['enum']['categories'][$category->slug]['description'] ?>
+            </p>
+        </div>
+    </div>
+    <div class="section-articles">
+        <div class="row">
+            <div class="col-100 section-articles_second">
+                <div class="row">
+                    <?php foreach ($videos as $content) : ?>
+                        <div class="col-30">
+                            <article class="article">
+                                <a href="/<?php echo $view->escape($content->category->slug, 'path') ?>/<?php echo $view->escape($content->url, 'path') ?>">
+                                    <figure>
+                                        <img src="<?php echo $GLOBALS['config']['cdn_url'] ?>/images/<?php echo $view->escape($content->vertical, 'path') ?>" alt="<?php echo $view->escape($content->title_txt) ?>" itemprop="contentUrl">
+                                    </figure>
+                                    <h2>
+                                        <?php echo $view->escape($content->title_txt) ?>
+                                    </h2>
+                                </a>
+                            </article>
+                        </div>
+                    <?php endforeach ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-more">
+    <div class="section-more_wrapper">
+        <h5>Descubre más contenidos sobre</h5>
+        <a href="<?php echo $GLOBALS['config']['enum']['categories'][$category->slug]['external_link'] ?>" target="_blank" rel="sponsored nofollow noopener noreferer"><?php echo $view->escape($category->name) ?> <img src="/assets/images/arrow.svg"/></a>
+    </div>
+</section>
+
+<?php $view['slots']->start('footer') ?>
+    <?php include __DIR__ . '/partials/footer.phtml' ?>
+<?php $view['slots']->stop() ?>
+
+<?php $view['slots']->start('menu') ?>
+    <?php include __DIR__ . '/partials/menu.phtml' ?>
+<?php $view['slots']->stop() ?>
+
+<?php $view['slots']->start('scripts') ?>
+<script>
+    $(document).on('click', '.load-more', function () {
+        var actualPage = $(this).data('actual-page');
+        var category = '<?php echo $view->escape($category->slug) ?>';
+        $.get('/json/'+category+'/'+actualPage)
+        .done(function(data) {
+            $(data.view).appendTo('#more .row');
+            if (data.remaining <= 0) {
+                $('.load-more').hide();
+            } else {
+                $('.load-more').data('actual-page', data.page)
+            }
+        });
+    })
+</script>
+<?php $view['slots']->stop() ?>

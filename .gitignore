@@ -1,0 +1,8 @@
+._*
+.DS_Store
+composer.phar
+src/env.php
+vendor/
+storage/
+.vscode/
+.sass-cache/

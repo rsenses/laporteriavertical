@@ -1,0 +1,6 @@
+<article class="article relateds" data-url="/<?php echo $view->escape($post->url, 'path') ?>" data-title="<?php echo $view->escape($post->title) ?>">
+        <h6><?php echo $view->escape($post->title) ?></h6>
+        <?php echo $post->content ?>
+        <?php include __DIR__ . '/share.phtml' ?>
+        <a class="pagination__next" href="/alone/<?php echo $view->escape($next->url, 'path') ?>" data-title="<?php echo $view->escape($next->title) ?>">Next page</a>
+</article>

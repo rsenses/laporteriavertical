@@ -1,0 +1,19 @@
+{
+    "name": "laporteriavertical.marca.com",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "scss":
+            "node-sass ./public/sass/ -o ./public/css/ --output-style compressed",
+        "scss-w":
+            "node-sass -w ./public/sass/ -o ./public/css/ --output-style compressed"
+    },
+    "repository": {
+        "type": "git",
+        "url": "uestudio@vs-ssh.visualstudio.com:v3/uestudio/UECLUSTER/laporteriavertical"
+    },
+    "author": "",
+    "license": "ISC",
+    "homepage": "https://laporteriavertical.marca.com"
+}

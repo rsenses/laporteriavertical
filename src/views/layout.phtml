@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es" class="no-js" itemscope itemtype="http://schema.org/Webpage">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="author" content="UEStudio">
+        <meta name="referrer" content="same-origin">
+
+        <!-- Place this data between the <head> tags of your website -->
+        <title><?php $view['slots']->output('title', $GLOBALS['config']['web_name']) ?> ~ Compartiendo Conocimiento | Marca</title>
+
+        <!-- Schema.org markup (Google) -->
+        <meta itemprop="name" content="<?php $view['slots']->output('title', $GLOBALS['config']['web_name']) ?>">
+        <meta itemprop="description" content="<?php $view['slots']->output('google', 'Si eres una pyme o autónomo súmate a BBVA Compartiendo conocimiento, una ventana donde conocer historias reales de empresarios que, gracias a la ayuda y el asesoramiento de grandes expertos, consiguen tomar las mejores decisiones para sus negocios.') ?>">
+        <meta itemprop="image" content="<?php $view['slots']->output('image', 'https://compartiendoconocimiento.marca.com/assets/images/RRSS.png') ?>">
+
+        <!-- Twitter Card markup-->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@uestudio_es">
+        <meta name="twitter:title" content="<?php $view['slots']->output('title', $GLOBALS['config']['web_name']) ?>">
+        <meta name="twitter:description" content="<?php $view['slots']->output('facebook', 'Si eres una pyme o autónomo súmate a BBVA Compartiendo conocimiento, una ventana donde conocer historias reales de empresarios que, gracias a la ayuda y el asesoramiento de grandes expertos, consiguen tomar las mejores decisiones para sus negocios.') ?>">
+        <meta name="twitter:creator" content="@uestudio_es">
+        <!-- Twitter summary card with large image must be at least 280x150px -->
+        <meta name="twitter:image" content="<?php $view['slots']->output('image', 'https://compartiendoconocimiento.marca.com/assets/images/RRSS.png') ?>">
+        <meta name="twitter:image:alt" content="<?php $view['slots']->output('title', $GLOBALS['config']['web_name']) ?>">
+
+        <!-- Open Graph markup (Facebook, Pinterest) -->
+        <meta property="og:title" content="<?php $view['slots']->output('title', $GLOBALS['config']['web_name']) ?>">
+        <meta property="og:type" content="article">
+        <meta property="og:url" content="https://compartiendoconocimiento.marca.com<?php echo $uri ?>">
+        <meta property="og:image" content="<?php $view['slots']->output('image', 'https://compartiendoconocimiento.marca.com/assets/images/RRSS.png') ?>">
+        <meta property="og:description" content="<?php $view['slots']->output('facebook', 'Si eres una pyme o autónomo súmate a BBVA Compartiendo conocimiento, una ventana donde conocer historias reales de empresarios que, gracias a la ayuda y el asesoramiento de grandes expertos, consiguen tomar las mejores decisiones para sus negocios.') ?>">
+        <meta property="og:site_name" content="<?php echo $GLOBALS['config']['web_name'] ?>">
+
+        <link rel="canonical" href="https://compartiendoconocimiento.marca.com<?php echo $uri ?>">
+
+        <?php $view['slots']->output('trust') ?>
+
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+        <link href="/assets/css/main.css?v1" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://use.typekit.net/jrv3bef.css">
+
+        <?php $view['slots']->output('styles') ?>
+
+        <!--[if lt IE 9]>
+            <script src="http://estaticos.elmundo.es/em/js/html5.js"></script>
+        <![endif]-->
+
+        <?php if ($domain === 'marca.com') : ?>
+            <script src="//e00-apps-ue.uecdn.es/tms/js/tms-marca.js"></script>
+        <?php else: ?>
+            <script src="//e00-apps-ue.uecdn.es/tms/js/tms-mundo.js"></script>
+        <?php endif ?>
+        <script src="https://e00-videos-elmundo.uecdn.es/js/youtube-api.min.js"></script>
+    </head>
+    <body class="<?php $view['slots']->output('section') ?>">
+        <header class="header down">
+            <div class="logos">
+                <a href="https://www.marca.com/" class="marca" target="_blank">
+                    <img src="/assets/images/marca_black.svg" alt="Marca" />
+                </a>
+            </div>
+            <div class="logo">
+                <a href="/">
+                    <img src="/assets/images/logo2.png" alt="La portería digital"/>
+                </a>
+            </div>
+            <div class="menu">
+                <a href="https://www.tiktok.com/" target="_blank" rel="nofollow noopener">
+                    <img src="/assets/images/tiktok.png" alt="TikTok" />
+                </a>
+            </div>
+        </header>
+        
+        <?php $view['slots']->output('_content') ?>
+        
+        <footer class="footer">
+            <div class="footer-content">
+                <a href="https://www.tiktok.com/" target="_blank" rel="nofollow noopener">
+                    <img src="/assets/images/tiktok.png" alt="TikTok" />
+                </a>
+                <p>Este proyecto ha sido desarrollado por <a href="http://uestudio.es/" target="_blank">UE Studio</a>, firma creativa de branded content y marketing de contenidos de Unidad Editorial</p>
+            </div>
+        </footer>
+
+        <!-- JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="/assets/js/bundle.min.js"></script>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+        <!--<script src="assets/js/embed.js"></script>-->
+        <script src="/assets/js/body.js"></script>
+
+        <?php $view['slots']->output('scripts') ?>
+
+        <script>
+            TMSBottom();
+        </script>
+    </body>
+</html>

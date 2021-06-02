@@ -1,0 +1,7 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+Redirect 301 /tiempo-de-latir/los-discapacitados-somos-nosotros /tiempo-de-latir/todos-tenemos-una-discapacidad-llamala-miedo-llamala-ego

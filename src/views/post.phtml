@@ -1,0 +1,143 @@
+<?php $view->extend('layout.phtml') ?>
+<?php $view['slots']->set('title', $post->title_txt) ?>
+<?php $view['slots']->set('google', $post->description) ?>
+<?php $view['slots']->set('facebook', $post->facebook) ?>
+<?php $view['slots']->set('twitter', $post->twitter) ?>
+<?php $view['slots']->set('image', $GLOBALS['config']['cdn_url'] . '/images/' . $post->image) ?>
+<?php $view['slots']->set('section', $section) ?>
+
+<?php $view['slots']->start('trust') ?>
+    <meta property="article:modified_time" content="<?php echo str_replace('+00:00', 'Z', gmdate('c', strtotime($post->updated_at))) ?>"/>
+    <meta property="article:published_time" content="<?php echo str_replace('+00:00', 'Z', gmdate('c', strtotime($post->date))) ?>"/>
+
+    <script type="application/ld+json">
+        [{
+            "@context": "http://schema.org",
+            "@type": "AdvertiserContentArticle",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://compartiendoconocimiento.marca.com<?php echo $uri ?>"
+            },
+            "headline": "<?php echo $view->escape($post->title_txt) ?>",
+            "articleSection": "Native",
+            "image":[{
+                    "@type": "ImageObject",
+                    "url": "<?php echo $view->escape($GLOBALS['config']['cdn_url'] . '/images/' . $post->image) ?>",
+                    "height": 1393,
+                    "width": 877
+                }],
+            "datePublished": "<?php echo str_replace('+00:00', 'Z', gmdate('c', strtotime($post->date))) ?>",
+            "dateModified": "<?php echo str_replace('+00:00', 'Z', gmdate('c', strtotime($post->updated_at))) ?>",
+            "author": [{
+                    "@type": "<?php echo $view->escape($post->author_name) ?>",
+                    "name": "UE Studio"
+                }],
+            "publisher": {
+                "@type": "Organization",
+                "name": "<?php echo $view->escape($domain) ?>",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "<?php echo $view->escape($logo) ?>",
+                    "width": <?php echo $view->escape($logo_width) ?>,
+                    "height": <?php echo $view->escape($logo_height) ?>
+                }
+            },
+            "description": "<?php echo $view->escape($post->description) ?>"
+        }]
+    </script>
+<?php $view['slots']->stop() ?>
+
+<?php $view['slots']->start('styles') ?>
+    <style>
+        .pagination__next {
+            visibility: hidden;
+        }
+    </style>
+    <?php if (isset($post->options['styles']) && $post->options['styles']) : ?>
+        <?php echo stripslashes($post->options['styles']) ?>
+    <?php endif ?>
+<?php $view['slots']->stop() ?>
+
+<div class="container">
+    <?php if ($post->featured): ?>
+        <?php include __DIR__ . '/partials/article-featured.phtml' ?>
+    <?php else: ?>
+        <?php include __DIR__ . '/partials/article.phtml' ?>
+    <?php endif ?>
+</div>
+
+<?php $view['slots']->start('scripts') ?>
+    <!-- <script src="/assets/js/video.js?v2"></script>
+    <script src="/assets/js/embed.js?v3"></script> -->
+
+    <script>
+        function isOnScreen(elem) {
+            // if the element doesn't exist, abort
+            if( elem.length == 0 ) {
+                return;
+            }
+            var $window = $(window);
+            var viewport_top = $window.scrollTop();
+            var viewport_height = $window.height();
+            var viewport_bottom = viewport_top + viewport_height;
+            var $elem = $(elem);
+            var top = $elem.offset().top;
+            var height = $elem.height();
+            var bottom = top + height;
+
+            return (top >= viewport_top && top < viewport_bottom) ||
+            (bottom > viewport_top && bottom <= viewport_bottom) ||
+            (height > viewport_height && top <= viewport_top && bottom >= viewport_bottom)
+        }
+
+        $( document ).ready( function() {
+            var loaded = false;
+            var article = $('.article');
+            window.addEventListener('scroll', function(e) {
+                var elem = $('.pagination__next');
+                if(isOnScreen(elem) && !loaded) {
+                    var url = elem.attr('href');
+                    elem.remove();
+                    loaded = true;
+                    $.get(url, function(result) {
+                        $('.container').append(result);
+                    });
+                } else {
+                    loaded = false;
+                }
+
+                if (!isOnScreen(article)) {
+                    var articles = $('.article');
+                    articles.each(function()
+                    {
+                        if (isOnScreen($(this))) {
+                            if($(this) != article) {
+                                article = $(this);
+                                changeURL(article);
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+        function changeURL(elem) {
+            var url = elem.data('url');
+            var path = window.location.pathname;
+
+            if (path != url) {
+                var title = elem.data('title');
+
+                document.title = title + ' ~ Compartiendo Conocimiento | Marca';
+                window.history.pushState(null, null, url);
+
+                window.ueDataLayer.be_page_url=document.URL;
+                window.ueDataLayer.sendAnalyticsPage();
+            }
+        }
+    </script>
+
+    <?php if (isset($post->options['scripts']) && $post->options['scripts']) : ?>
+        <?php echo stripslashes($post->options['scripts']) ?>
+    <?php endif ?>
+<?php $view['slots']->stop() ?>

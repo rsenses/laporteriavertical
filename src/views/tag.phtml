@@ -1,0 +1,53 @@
+<?php $view->extend('layout.phtml') ?>
+<?php $view['slots']->set('section', $section) ?>
+
+<?php $view['slots']->start('styles') ?>
+<?php $view['slots']->stop() ?>
+
+<?php $view['slots']->start('header') ?>
+    <?php include __DIR__ . '/partials/header.phtml' ?>
+<?php $view['slots']->stop() ?>
+
+<section class="category section">
+    <div class="section-title">
+        <div class="section-title_left">
+        <h3 class=""><small><img src="/assets/images/tag.svg"/> búsqueda por</small><?php echo $tag->name ?>
+            </h3>
+        </div>
+    </div>
+    <div class="section-articles">
+        <div class="row">
+            <div class="col-100 section-articles_second">
+                <div class="row">
+                    <?php foreach ($videos as $content) : ?>
+                        <div class="col-30">
+                            <article class="article">
+                                <a href="/<?php echo $view->escape($content->category->slug, 'path') ?>/<?php echo $view->escape($content->url, 'path') ?>">
+                                    <figure>
+                                        <img src="<?php echo $GLOBALS['config']['cdn_url'] ?>/images/<?php echo $view->escape($content->vertical, 'path') ?>" alt="<?php echo $view->escape($content->title_txt) ?>" itemprop="contentUrl">
+                                    </figure>
+                                    <h2>
+                                        <?php echo $view->escape($content->title_txt) ?>
+                                    </h2>
+                                </a>
+                            </article>
+                        </div>
+                    <?php endforeach ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<?php include __DIR__ . '/partials/contact.phtml' ?>
+
+<?php $view['slots']->start('footer') ?>
+    <?php include __DIR__ . '/partials/footer.phtml' ?>
+<?php $view['slots']->stop() ?>
+
+<?php $view['slots']->start('menu') ?>
+    <?php include __DIR__ . '/partials/menu.phtml' ?>
+<?php $view['slots']->stop() ?>
+
+<?php $view['slots']->start('scripts') ?>
+<?php $view['slots']->stop() ?>
