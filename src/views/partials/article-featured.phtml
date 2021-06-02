@@ -7,7 +7,11 @@
         <div class="article-content">
             <span class="ante"><?php echo $view->escape($tag->name) ?></span>
             <h2><?php echo $view->escape($post->title) ?></h2>
+            <div class="article-autor"><?php echo $view->escape($post->author_name) ?></div>
             <?php echo $post->content ?>
+            <div class="article-bg">
+                <img src="/assets/images/bg.svg" />
+            </div>
             <?php include __DIR__ . '/share.phtml' ?>
             <a class="pagination__next" href="/alone/<?php echo $view->escape($next->url, 'path') ?>" data-title="<?php echo $view->escape($next->title) ?>">Next page</a>
         </div>
