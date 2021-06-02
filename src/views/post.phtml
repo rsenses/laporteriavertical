@@ -48,6 +48,7 @@
 <?php $view['slots']->stop() ?>
 
 <?php $view['slots']->start('styles') ?>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <style>
         .pagination__next {
             visibility: hidden;
@@ -58,18 +59,19 @@
     <?php endif ?>
 <?php $view['slots']->stop() ?>
 
-<div class="container">
-    <?php if ($post->featured): ?>
-        <?php include __DIR__ . '/partials/article-featured.phtml' ?>
-    <?php else: ?>
-        <?php include __DIR__ . '/partials/article.phtml' ?>
-    <?php endif ?>
-</div>
+    <div class="container">
+        <?php if ($post->featured): ?>
+            <?php include __DIR__ . '/partials/article-featured.phtml' ?>
+        <?php else: ?>
+            <?php include __DIR__ . '/partials/article.phtml' ?>
+        <?php endif ?>
+    </div>
 
-<?php $view['slots']->start('scripts') ?>
+    <?php $view['slots']->start('scripts') ?>
     <!-- <script src="/assets/js/video.js?v2"></script>
     <script src="/assets/js/embed.js?v3"></script> -->
 
+    <script async src="https://www.tiktok.com/embed.js"></script>
     <script>
         function isOnScreen(elem) {
             // if the element doesn't exist, abort
