@@ -22,25 +22,3 @@ $hostNames = explode('.', $host);
 $domain = $hostNames[count($hostNames) - 2] . '.' . $hostNames[count($hostNames) - 1];
 
 $app->view()->addGlobal('domain', $domain);
-
-if ($domain === 'expansion.com') {
-    $logo = 'https://e00-expansion.uecdn.es/assets/desktop/master/img/logos/logo_expansion_noticia.png';
-    $width = 287;
-    $height = 60;
-} elseif ($domain === 'marca.com') {
-    $logo = 'https://e00-marca.uecdn.es/assets/v1/img/logo-marca.svg';
-    $width = 287;
-    $height = 81;
-} else {
-    $logo = 'https://e00-elmundo.uecdn.es/promociones/native/fixed-theme/img/elmundo.svg';
-    $width = 287;
-    $height = 38;
-}
-
-$app->view()->addGlobal('logo', $logo);
-$app->view()->addGlobal('logo_width', $width);
-$app->view()->addGlobal('logo_height', $height);
-
-// Add tags to menu
-$tags = App\Entities\Tag::fetchAllProject($app->db());
-$app->view()->addGlobal('tags', $tags);

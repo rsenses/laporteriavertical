@@ -5,9 +5,9 @@
             <script async src="https://www.tiktok.com/embed.js"></script>
         </div>
         <div class="article-content">
-            <span class="ante"><?php echo $view->escape($tag->name) ?></span>
+            <span class="ante"><?php echo $view->escape($post->subtitle) ?></span>
             <h2><?php echo $view->escape($post->title) ?></h2>
-            <div class="article-autor"><?php echo $view->escape($post->author_name) ?></div>
+            <div class="article-autor">Por <?php echo $view->escape($post->author_name) ?></div>
             <?php echo $post->content ?>
             <div class="article-bg">
                 <img src="/assets/images/bg.svg" />

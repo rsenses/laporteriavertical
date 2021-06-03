@@ -1,4 +1,5 @@
 <article class="article relateds" data-url="/<?php echo $view->escape($post->url, 'path') ?>" data-title="<?php echo $view->escape($post->title) ?>">
+        <span class="ante"><?php echo $view->escape($post->subtitle) ?></span>
         <h6><?php echo $view->escape($post->title) ?></h6>
         <?php echo $post->content ?>
         <?php include __DIR__ . '/share.phtml' ?>

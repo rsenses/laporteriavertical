@@ -13,7 +13,6 @@ class Post
     public $db;
     public $fiesta = false;
     public $options;
-    public $tags;
 
     public function __construct(MyPDO $db)
     {
@@ -22,8 +21,6 @@ class Post
         $this->title_txt = strip_tags(preg_replace("/<br\s?\/?>/", ' ', $this->title));
 
         $this->date_formated = $this->getDateTimeFromFormat('Y-m-d H:i:s');
-
-        $this->tags = $this->tags();
 
         $this->options = $this->options();
     }

@@ -25,7 +25,6 @@ class PostController extends BaseController
             [
                 'section' => 'noticia',
                 'post' => $post,
-                'tag' => $post->tags[0] ?? null,
                 'next' => $next,
             ]
         );
@@ -56,7 +55,6 @@ class PostController extends BaseController
             [
                 'section' => 'noticia',
                 'post' => $post,
-                'tag' => $post->tags[0] ?? null,
                 'next' => $next,
             ]
         );
