@@ -58,9 +58,11 @@ class Post
                 LEFT JOIN author AS a ON v.author_id = a.author_id
             WHERE v.section = :section
             AND v.url = :slug
+            AND v.date <= :now
         ', [
             'section' => $GLOBALS['config']['web_slug'],
-            'slug' => $slug
+            'slug' => $slug,
+            'now' => date('Y-m-d H:i:s'),
         ]);
 
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'App\Entities\Post', [$db]);
@@ -75,10 +77,12 @@ class Post
                 LEFT JOIN author AS a ON v.author_id = a.author_id
             WHERE v.section = :section
             AND v.id < :id
-            ORDER BY v.date DESC
+            AND v.date <= :now
+            ORDER BY v.id DESC
         ', [
             'section' => $GLOBALS['config']['web_slug'],
-            'id' => $id
+            'id' => $id,
+            'now' => date('Y-m-d H:i:s'),
         ]);
 
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'App\Entities\Post', [$db]);
@@ -92,9 +96,11 @@ class Post
             FROM videos AS v
                 LEFT JOIN author AS a ON v.author_id = a.author_id
             WHERE v.section = :section
-            ORDER BY v.date DESC
+            AND v.date <= :now
+            ORDER BY v.id DESC
         ', [
-            'section' => $GLOBALS['config']['web_slug']
+            'section' => $GLOBALS['config']['web_slug'],
+            'now' => date('Y-m-d H:i:s'),
         ]);
 
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'App\Entities\Post', [$db]);
@@ -109,9 +115,11 @@ class Post
                 LEFT JOIN author AS a ON v.author_id = a.author_id
             WHERE v.section = :section
             AND v.important = 1
+            AND v.date <= :now
             ORDER BY v.date DESC
         ', [
-            'section' => $GLOBALS['config']['web_slug']
+            'section' => $GLOBALS['config']['web_slug'],
+            'now' => date('Y-m-d H:i:s'),
         ]);
 
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'App\Entities\Post', [$db]);
