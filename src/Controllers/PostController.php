@@ -32,7 +32,7 @@ class PostController extends BaseController
 
     public function aloneAction(string $slug)
     {
-        $post = $this->getPost($slug);
+        $post = $this->getPost($slug, true);
 
         // If no post, Error 404
         if (!$post) {
@@ -60,9 +60,13 @@ class PostController extends BaseController
         );
     }
 
-    private function getPost(string $slug)
+    private function getPost(string $slug, $fetchPublished = false)
     {
-        $post = Post::fetch($this->db, $slug);
+        if ($fetchPublished) {
+            $post = Post::fetchPublished($this->db, $slug);
+        } else {
+            $post = Post::fetch($this->db, $slug);
+        }
 
         $post->updateVisitsCounter();
 

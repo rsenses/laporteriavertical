@@ -58,7 +58,25 @@ class Post
                 LEFT JOIN author AS a ON v.author_id = a.author_id
             WHERE v.section = :section
             AND v.url = :slug
+        ', [
+            'section' => $GLOBALS['config']['web_slug'],
+            'slug' => $slug
+        ]);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'App\Entities\Post', [$db]);
+        return $stmt->fetch();
+    }
+
+    public static function fetchPublished(MyPDO $db, string $slug)
+    {
+        $stmt = $db->run('
+            SELECT v.id, v.title, v.subtitle, v.important AS featured, v.content, v.url, v.image, v.vertical, v.vimeo, v.twitter, v.facebook, v.description, v.date, v.updated_at, v.options, v.visits, a.name AS author_name
+            FROM videos AS v
+                LEFT JOIN author AS a ON v.author_id = a.author_id
+            WHERE v.section = :section
+            AND v.url = :slug
             AND v.date <= :now
+            AND v.active = 1
         ', [
             'section' => $GLOBALS['config']['web_slug'],
             'slug' => $slug,
@@ -78,6 +96,7 @@ class Post
             WHERE v.section = :section
             AND v.id < :id
             AND v.date <= :now
+            AND v.active = 1
             ORDER BY v.id DESC
         ', [
             'section' => $GLOBALS['config']['web_slug'],
@@ -97,6 +116,7 @@ class Post
                 LEFT JOIN author AS a ON v.author_id = a.author_id
             WHERE v.section = :section
             AND v.date <= :now
+            AND v.active = 1
             ORDER BY v.id DESC
         ', [
             'section' => $GLOBALS['config']['web_slug'],
@@ -122,8 +142,7 @@ class Post
             'now' => date('Y-m-d H:i:s'),
         ]);
 
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'App\Entities\Post', [$db]);
-        return $stmt->fetch();
+        return $stmt->fetchAll(PDO::FETCH_CLASS, 'App\Entities\Post', [$db]);
     }
 
     public static function fetchPopular(MyPDO $db, int $limit = 99)
