@@ -2,197 +2,34 @@
 <?php $view['slots']->set('section', $section) ?>
 
 <?php $view['slots']->start('styles') ?>
+<style>
+    .home .logo {
+        display: none;
+    }
+</style>
 <?php $view['slots']->stop() ?>
 
-<?php $view['slots']->start('header') ?>
-    <?php include __DIR__ . '/partials/header.phtml' ?>
-<?php $view['slots']->stop() ?>
+<div class="main-title">
+    <img src="/assets/images/bg.svg" />
+    <div class="glitch" data-text="La portería vertical">La portería vertical</div>
+</div>
 
-<section class="hero">
-    <div class="hero-bg">
-        <div class="content">
-            <div class="grid grid--img">
-                <div class="grid__item pos-1">
-                    <div class="grid__item-img" style="background-image:url(assets/images/hero/hero1.jpg);"></div>
-                </div>
-                <div class="grid__item pos-2">
-                    <div class="grid__item-img" style="background-image:url(assets/images/hero/hero2.jpg);"></div>
-                </div>
-                <div class="grid__item pos-3">
-                    <div class="grid__item-img" style="background-image:url(assets/images/hero/hero3.jpg);"></div>
-                </div>
-                <div class="grid__item pos-4">
-                    <div class="grid__item-img" style="background-image:url(assets/images/hero/hero4.jpg);"></div>
-                </div>
-                <div class="grid__item pos-5">
-                    <div class="grid__item-img" style="background-image:url(assets/images/hero/hero5.jpg);"></div>
-                </div>
-                <div class="grid__item pos-6">
-                    <div class="grid__item-img" style="background-image:url(assets/images/hero/hero6.jpg);"></div>
-                </div>
-                <div class="grid__item pos-7">
-                    <div class="grid__item-img" style="background-image:url(assets/images/hero/hero7.jpg);"></div>
-                </div>
-                <div class="grid__item pos-8">
-                    <div class="grid__item-img" style="background-image:url(assets/images/hero/hero8.jpg);"></div>
-                </div>
+<main class="main">
+    <?php foreach ($posts as $post): ?>
+        <article class="main-article">
+            <?php echo $post->options['tiktok'] ?>
+            <div>
+                <h2>
+                    <a href="/<?php echo $view->escape($post->url, 'path') ?>"><?php echo $view->escape($post->title) ?></a>
+                </h2>
+                <a href="/<?php echo $view->escape($post->url, 'path') ?>">Ver más →</a>
             </div>
-             <h2 class="content__title">
-                <span>Compartiendo</span>
-                <span class="content__title-sub">conocimiento</span>
-            </h2>
-
-        </div>
-    </div> <a href="#mision" class="hero-scroll">
-        <img src="/assets/images/arrow.png"/>
-    </a>
-
-    <div class="uestudio">UN PROYECTO DE UESTUDIO PARA BBVA</div>
-</section>
-
-<section id="mision" class="section mision">
-    <div class="section-title">
-        <div class="section-title_left">
-            <h3 class="hey">La misión</h3>
-            <p class="hey">BBVA La Portería Vertical es la plataforma que va a acompañar a pymes y autónomos a tomar decisiones empresariales, a través del conocimiento y del aprendizaje, de la mano de grandes expertos.</p> <a href="#vivencias" class="hey">Ir a los contenidos <span><img src="/assets/images/arrow.svg"></span></a>
-        </div>
-    </div>
-    <div class="share share-home">
-        <span>Comparte esto <em>con el mundo</em></span>
-        <?php include __DIR__ . '/partials/share.phtml' ?>
-    </div>
-</section>
-
-<section class="section" id="vivencias">
-    <div class="section-title">
-        <div class="section-title_left">
-            <h3 class="hey">Vivencias <span>empresariales</span></h3>
-        </div>
-        <div class="section-title_right">
-            <a href="/vivencias-empresariales" class="btn hey">Ir a la sección <span><img src="/assets/images/arrow.svg"/></span></a>
-            <p class="hey"><?php echo $GLOBALS['config']['enum']['categories']['vivencias-empresariales']['description'] ?></p>
-        </div>
-    </div>
-    <div class="section-articles">
-        <div class="row">
-            <div class="col-50 section-articles_main">
-                <article class="article hey">
-                    <a href="/vivencias-empresariales/pymes-que-han-sabido-en-la-crisis-una-oportunidad#sec1">
-                        <figure>
-                            <img src="https://uecluster.blob.core.windows.net/images/laporteriavertical/1622442811_subhistoria1.jpg" alt="Pymes que han sabido en la crisis una oportunidad" itemprop="contentUrl">
-                        </figure>
-                        <h2>Pymes que han sabido en la crisis una oportunidad</h2>
-                    </a>
-                </article>
+            <div class="article-bg">
+                <img src="/assets/images/bg.svg" />
             </div>
-            <div class="col-50 section-articles_second">
-                <div class="row">
-                    <div class="col-50">
-                        <article class="article hey">
-                            <a href="/vivencias-empresariales/pymes-que-han-sabido-en-la-crisis-una-oportunidad#sec2">
-                                <figure>
-                                    <img src="https://uecluster.blob.core.windows.net/images/laporteriavertical/1622442818_subhistoria2.jpg" alt="Valores claves para las empresas de nueva creación" itemprop="contentUrl">
-                                </figure>
-                                <h2>Valores claves para las empresas de nueva creación</h2>
-                            </a>
-                        </article>
-                    </div>
-                    <div class="col-50">
-                        <article class="article hey">
-                            <a href="/vivencias-empresariales/pymes-que-han-sabido-en-la-crisis-una-oportunidad#sec3">
-                                <figure>
-                                    <img src="https://uecluster.blob.core.windows.net/images/laporteriavertical/1622442824_subhistoria3.jpg" alt="Soluciones a tu alcance para mejorar la financiación de tu pyme" itemprop="contentUrl">
-                                </figure>
-                                <h2>Soluciones a tu alcance para mejorar la financiación de tu pyme</h2>
-                            </a>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> 
-<section class="section webinars">
-    <div class="section-title">
-        <div class="section-title_left">
-            <h3 class="hey">Webinars <span>online</span></h3>
-        </div>
-        <div class="section-title_right">
-            <a href="https://www.bbva.es/finanzas-vistazo/para-tu-negocio/capacidades-digitales.html" class="btn hey" target="_blank" rel="nofollow">Ir a la sección <span><img src="/assets/images/arrow.svg"/></span></a>
-            <p class="hey"><?php echo $GLOBALS['config']['enum']['categories']['webinars-online']['description'] ?></p>
-        </div>
-    </div>
-    <div class="section-articles">
-        <?php foreach ($webinars as $content) : ?>
-            <article class="article hey">
-                <a href="/<?php echo $view->escape($content->category->slug, 'path') ?>/<?php echo $view->escape($content->url, 'path') ?>">
-                    <figure>
-                        <img src="<?php echo $GLOBALS['config']['cdn_url'] ?>/images/<?php echo $view->escape($content->vertical, 'path') ?>" alt="<?php echo $view->escape($content->title_txt) ?>" itemprop="contentUrl">
-                    </figure>
-                    <h2>
-                        <?php echo $view->escape($content->title_txt) ?>
-                    </h2>
-                </a>
-            </article>
-        <?php endforeach ?>
-    </div>
-</section>
-<section class="section">
-    <div class="section-title">
-        <div class="section-title_left">
-            <h3 class="hey">La voz
-                <span>del experto</span>
-            </h3>
-        </div>
-        <div class="section-title_right">
-            <a href="https://www.bbva.es/finanzas-vistazo/para-tu-negocio/compartiendo-conocimiento.html" class="btn hey" target="_blank" rel="nofollow">Ir a la sección <span><img src="/assets/images/arrow.svg"/></span></a>
-            <p class="hey"><?php echo $GLOBALS['config']['enum']['categories']['la-voz-del-experto']['description'] ?></p>
-        </div>
-    </div>
-    <div class="section-articles">
-        <div class="row">
-            <div class="col-50 section-articles_main">
-                <article class="article hey">
-                    <a href="/<?php echo $view->escape($experto[0]->category->slug, 'path') ?>/<?php echo $view->escape($experto[0]->url, 'path') ?>">
-                        <figure>
-                            <img src="<?php echo $GLOBALS['config']['cdn_url'] ?>/images/<?php echo $view->escape($experto[0]->image, 'path') ?>" alt="<?php echo $view->escape($experto[0]->title_txt) ?>" itemprop="contentUrl">
-                        </figure>
-                        <h2>
-                            <?php echo $view->escape($experto[0]->title_txt) ?>
-                        </h2>
-                    </a>
-                </article>
-            </div>
-            <div class="col-50 section-articles_second">
-                <div class="row">
-                    <?php foreach (array_slice($experto, 1) as $content) : ?>
-                        <div class="col-50">
-                            <article class="article hey">
-                                <a href="/<?php echo $view->escape($content->category->slug, 'path') ?>/<?php echo $view->escape($content->url, 'path') ?>">
-                                    <figure>
-                                        <img src="<?php echo $GLOBALS['config']['cdn_url'] ?>/images/<?php echo $view->escape($content->vertical, 'path') ?>" alt="<?php echo $view->escape($content->title_txt) ?>" itemprop="contentUrl">
-                                    </figure>
-                                    <h2>
-                                        <?php echo $view->escape($content->title_txt) ?>
-                                    </h2>
-                                </a>
-                            </article>
-                        </div>
-                    <?php endforeach ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<?php include __DIR__ . '/partials/contact.phtml' ?>
-
-<?php $view['slots']->start('footer') ?>
-    <?php include __DIR__ . '/partials/footer.phtml' ?>
-<?php $view['slots']->stop() ?>
-
-<?php $view['slots']->start('menu') ?>
-    <?php include __DIR__ . '/partials/menu.phtml' ?>
-<?php $view['slots']->stop() ?>
+        </article>
+    <?php endforeach ?>
+</main>
 
 <?php $view['slots']->start('scripts') ?>
 <?php $view['slots']->stop() ?>
