@@ -2,6 +2,7 @@
         <span class="ante"><?php echo $view->escape($post->subtitle) ?></span>
         <h6><?php echo $view->escape($post->title) ?></h6>
         <?php echo $post->content ?>
+        <script async src="https://www.tiktok.com/embed.js"></script>
         <?php include __DIR__ . '/share.phtml' ?>
         <a class="pagination__next" href="/alone/<?php echo $view->escape($next->url, 'path') ?>" data-title="<?php echo $view->escape($next->title) ?>">Next page</a>
 </article>
