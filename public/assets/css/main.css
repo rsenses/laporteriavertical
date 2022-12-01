@@ -1120,40 +1120,6 @@ body {
     width: 20px;
 }
 
-@font-face {
-    font-family: 'Huawei Font';
-    src: url('../fonts/HuaweiFont.woff2') format('woff2'), url('../fonts/HuaweiFont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Huawei Font';
-    src: url('../fonts/HuaweiFontLight.woff2') format('woff2'), url('../fonts/HuaweiFontLight.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Huawei Font';
-    src: url('../fonts/HuaweiFontThin.woff2') format('woff2'), url('../fonts/HuaweiFontThin.woff') format('woff');
-    font-weight: 100;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Huawei Font';
-    src: url('../fonts/HuaweiFontMedium.woff2') format('woff2'), url('../fonts/HuaweiFontMedium.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Huawei Font';
-    src: url('../fonts/HuaweiFont-Bold.woff2') format('woff2'), url('../fonts/HuaweiFont-Bold.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-}
 
 @media (max-width: 1300px) {
     .main .main-article {
